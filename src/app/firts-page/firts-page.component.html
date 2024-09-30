@@ -1,7 +1,19 @@
-<div class="sidenav">
-    <h2 class="topics">Tópicos</h2>
-    <ul>
-        <li  href="">Deferrable Views</li>
-        <li  href="">Signals</li>
-    </ul>
+<div class="page">
+    <div class="sidenav">
+        <h2 class="topics">Tópicos</h2>
+        <ul>
+            <li (click)="changePage(1)">Deferrable Views</li>
+            <li (click)="changePage(2)">Signals</li>
+        </ul>
+    </div>
+    <section class="content">
+        @switch (page) {
+            @case (1) {
+                <app-deferrable-views></app-deferrable-views>
+            }
+            @case (2) {
+                <app-signal></app-signal>
+            }
+        }
+    </section>
 </div>

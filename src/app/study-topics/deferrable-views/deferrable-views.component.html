@@ -19,46 +19,66 @@ On
 When
 -->
 
-<h1>Deferrable Views</h1>
+<h4>O que é o Deferrable Views?</h4>
 
-<p class="paragrafo">
-    O defer especifica um micro lazy loading. Assim, ele irá carregar tudo primeiro, até chegar o momento
-    Temos as seguintes opções;
+
+<p>
+    O defer pode ser utilizado no carregamento de componentes. Ele pode ser utilizado para reduzir o bundle de carregamento inicial
+     ou para componentes que não precisam ser carregados com prioridade. 
+</p>
+<p>
+    O defer será utilizado da seguinte forma: 
+</p>
+<pre><code [highlight]="deferCode" language="typescript">  
+</code></pre>
+
+<p>
+    O defer possui parametros, que irá indicar o que acontecerá. Temos os seguintes parametros: 
 </p>
 
-<p class="paragrafo">
-    Temos que utilizar o defer() com parametros. O parametro irá indicar o que acontecerá. Temos também o placeholder, o
-    Loading e o error.
-    O placeholder será exibido enquanto a ação não acontecer. O Loading irá acontecer assim que a ação for disparada,
-    será o tempo de carregamento basicamente.
-    O error será a opção quando algo der errado
-</p>
+<ul>
+    <li>
+        Idle: o idle é utilizado por default. Ele esperará o navegador estar oscioso, isto é, finalizar todo o carregamento dos bundles, para ai sim 
+        carregar o que foi definido no defer
+    </li>    
+    <li>
+        Timer: Irá realizar a operação de carregamento após o tempo estabelecido 
+    </li>
+    <li>
+        Viewport: Irá carregar o bundle assim que o usuário chegar no local da página   
+    </li>
+    <li>
+        Interection: é quando você interage com alguma parte da interface. Você pode passar um <strong>#variable</strong> para ele tb, que
+        ele irá carregar quando você interagir com ele
+    </li>
+    <li>
+        Immediate: irá carregar tudo assim que o resto da aplicação carregar. Semelhante ao idle
+    </li>
+    <li>
+        Prefetch: irá carregar o bundle, mas o elemento só será renderizado na tela quando você resolver a primeira ação. Exemplo: 
+        <pre><code>{{'@defer(on interaction; prefetch on interaction(trigger))'}}</code></pre>
+        Desta forma, o elemento será carregado quando acontecer a interação com o trigger, mas ele irá ser renderizado na tela quando ocorrer a interação com o 
+        Deffer
+    </li>
+    <li>When: irá carregar quando alguma ação for verdadeira. </li>
+</ul>
+<p>Observação: O On é do tipo Or, ou seja, utilizando diversos On's juntos, a primeira açõa aplicada será a executada</p>
 
-<p class="paragrafo">
-    Assim, o defer possui alguns parametro: idle, timer, viewport, interaction, hover, immediate, prefetch
-    <br>
-    - Idle é o default, ele esperará o navegador estar oscioso para carregar tudo
-    <br>
-    - Timer irá realizar a operação após o tempo especificado
-    <br>
-    - Viewport irá realizar o carregamento assim que o usuário chegar na página
-    <br>
-    - Interection é quando você interage com alguma parte da interface. Você pode passar um #variable para ele tb, que
-    ele irá carregar quando você interagir com ele
-    <br>
-    - Immediate irá carregar tudo assim que o resto da aplicação carregar
-    <br>
-    - Prefetch ir carregar, mas o elemento só será renderizado na tela quando vc resolver a primeira ação: Exemplo:
-    {{'@defer(on interaction; prefetch on interaction(trigger))'}}
-    desta forma, o elemento será carregado quando acontecer a interação com o trigger, mas ele irá ser renderizado na
-    tela quando ocorrer a interação com o defer(a primeira parte)
-    <br>
-    Obs: o On é or, ou seja, utilizando diversos desse On juntos, a primeira ação aplicada será a executada
+<h4>Exemplos</h4>
 
-</p>
+<h5>Idle</h5>
+<!--Exemplo com o Idle. O comportamento dele é dificil de notar visualmente, porem pode ser visualizado no Network -->
+@defer () {
+    <app-component-test></app-component-test>
+} @placeholder {
+    <p>Carregando o componente</p>
+} @loading {
+    <p>Loading...</p>
+} @error { 
+    <p>Error ao carregar </p>
+}
 
-<p #touch>Passe aqui</p>
-
+<h5>Timer</h5>
 <!--Exemplo timer-->
 @defer(on timer(5s)) {
     <app-component-test></app-component-test>
@@ -70,9 +90,26 @@ When
     <p>Erro ao carregar a imagem</p>
 }
 
-<h2>Exemplo com when</h2>
+<h5 #title>Viewport</h5>
+@defer(on viewport(title)) { 
+    <app-component-test></app-component-test>
+} @placeholder {
+    <p>Carregar o component</p>
+}
 
-<p>Irá carregar de acordo com uma ação</p>
+
+<h5>Interection</h5>
+
+<button #touch>Clique aqui</button>
+
+@defer(on interaction(touch)){ 
+    <app-component-test></app-component-test>
+} @placeholder {
+    <p>Carregando o componente</p>
+}
+
+
+<h5>When</h5>
 
 @defer(when isTrue) {
     <app-component-test></app-component-test>
