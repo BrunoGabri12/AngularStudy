@@ -1,0 +1,19 @@
+O signal armazena valores e tem a possibilidade de notificar quem está inscrito no canal. Basicamente é um observable, com poder 
+de estar trackeado com o seu elemento no HTML, evitando assim percorrer a arvore DOM
+
+
+{{firstName()}} 
+{{lastName()}}
+
+
+Para modificar um signal, basta utilizar o método set.
+<br>
+Temos também o computed(), o qual pode utilizar de dois ou mais signals e retorna em um novo signal. Isto é: 
+
+
+Temos também o método update(), o qual irá retornar os valores anteriores e você poderá gerenciar o estado. Isto é: 
+this.variabel.update((oldValue) =>  )
+
+
+
+<button (click)="emitter()"> emitir evento </button>

@@ -1,0 +1,32 @@
+<h1>Template Driven Forms</h1>
+
+
+<form action="">
+    <label for="">Nome:
+        <input 
+            type="radio"
+            value="Feminino" 
+            name="inputName"
+            #name="ngModel" 
+            [ngModel]="name.value" 
+            required="true"
+        >
+        <input 
+        type="radio"
+        value="Masculino" 
+        name="inputName"
+        #name="ngModel" 
+        [ngModel]="name.value" 
+        required="true"
+    >
+    </label>
+
+
+    <select name="seleteComidas" #comidas="ngModel" ngModel>
+        <option value="">Selecione um alimento</option>
+    </select>
+
+    <hr>
+    value: {{name.value}}
+    <hr />
+</form>

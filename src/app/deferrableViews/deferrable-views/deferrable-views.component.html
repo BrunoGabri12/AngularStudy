@@ -1,0 +1,87 @@
+<!-- 
+O defer especifica um micro lazy loading. Assim, ele irá carregar tudo primeiro, até chegar o momento 
+Temos as seguintes opções; 
+
+On
+(idle, timer, viewport, interaction, hover, immediate, prefetch)
+ - o idle é o default, ele esperará o navegador estar oscioso para carregar tudo 
+ - timer irá realizar a operação após o tempo especificado
+ - viewport irá realizar o carregamento assim que o usuário chegar na página
+ - interection é quando você interage com alguma parte da interface. Você pode passar um #variable para ele tb, que ele irá carregar quando você interagir com ele
+ - o immediate irá carregar tudo assim que o resto da aplicação carregar 
+ - o prefetch ir carregar, mas o elemento só será renderizado na tela quando vc resolver a primeira ação: Exemplo: 
+        @defer(on interaction; prefetch on interaction(trigger))
+   desta forma, o elemento será carregado quando acontecer a interação com o trigger, mas ele irá ser renderizado na tela quando ocorrer a interação com o defer(a primeira parte)
+
+
+   o On é or, ou seja, utilizando diversos desse On juntos, a primeira ação aplicada será a executada 
+
+When
+-->
+
+<h1>Deferrable Views</h1>
+
+<p class="paragrafo">
+    O defer especifica um micro lazy loading. Assim, ele irá carregar tudo primeiro, até chegar o momento
+    Temos as seguintes opções;
+</p>
+
+<p class="paragrafo">
+    Temos que utilizar o defer() com parametros. O parametro irá indicar o que acontecerá. Temos também o placeholder, o
+    Loading e o error.
+    O placeholder será exibido enquanto a ação não acontecer. O Loading irá acontecer assim que a ação for disparada,
+    será o tempo de carregamento basicamente.
+    O error será a opção quando algo der errado
+</p>
+
+<p class="paragrafo">
+    Assim, o defer possui alguns parametro: idle, timer, viewport, interaction, hover, immediate, prefetch
+    <br>
+    - Idle é o default, ele esperará o navegador estar oscioso para carregar tudo
+    <br>
+    - Timer irá realizar a operação após o tempo especificado
+    <br>
+    - Viewport irá realizar o carregamento assim que o usuário chegar na página
+    <br>
+    - Interection é quando você interage com alguma parte da interface. Você pode passar um #variable para ele tb, que
+    ele irá carregar quando você interagir com ele
+    <br>
+    - Immediate irá carregar tudo assim que o resto da aplicação carregar
+    <br>
+    - Prefetch ir carregar, mas o elemento só será renderizado na tela quando vc resolver a primeira ação: Exemplo:
+    {{'@defer(on interaction; prefetch on interaction(trigger))'}}
+    desta forma, o elemento será carregado quando acontecer a interação com o trigger, mas ele irá ser renderizado na
+    tela quando ocorrer a interação com o defer(a primeira parte)
+    <br>
+    Obs: o On é or, ou seja, utilizando diversos desse On juntos, a primeira ação aplicada será a executada
+
+</p>
+
+<p #touch>Passe aqui</p>
+
+<!--Exemplo timer-->
+@defer(on timer(5s)) {
+    <app-component-test></app-component-test>
+} @placeholder {
+    <p>Carregar o componente</p>
+} @loading {
+    <p>Loading....</p>
+} @error {
+    <p>Erro ao carregar a imagem</p>
+}
+
+<h2>Exemplo com when</h2>
+
+<p>Irá carregar de acordo com uma ação</p>
+
+@defer(when isTrue) {
+    <app-component-test></app-component-test>
+} @placeholder {
+    <p>Carregar o componente</p>
+} @loading {
+    <p>Loading....</p>
+} @error {
+    <p>Erro ao carregar a imagem</p>
+}
+
+<button (click)="isTrue=true">Carregar o componente</button>
