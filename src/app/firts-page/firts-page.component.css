@@ -1,0 +1,31 @@
+.sidenav { 
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    height: 100vh;
+    background-color: #10454F;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+
+    color: #D8F4F9;
+}
+
+.sidenav > h2 { 
+    margin-left: 10px;
+    width: 100%;
+}
+
+.sidenav > ul { 
+    list-style: none;
+}
+
+ul > li { 
+    margin-bottom: 10px;    
+    cursor: pointer;
+}
+
+li:hover { 
+    color: #dceef1;
+    font-size: 19px;
+}
