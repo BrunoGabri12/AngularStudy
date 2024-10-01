@@ -1,0 +1,18 @@
+.ball { 
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: purple;
+    position: relative;
+    opacity: 1;
+}
+
+.ball::after { 
+    content: '';
+    border-left: 2px solid #fff;
+    display: block;
+    height: 50%;
+    width: 100%;
+    transform: translate(50%,0);
+
+}
