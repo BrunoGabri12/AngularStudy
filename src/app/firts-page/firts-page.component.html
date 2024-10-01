@@ -2,18 +2,36 @@
     <div class="sidenav">
         <h2 class="topics">Tópicos</h2>
         <ul>
-            <li (click)="changePage(1)">Deferrable Views</li>
-            <li (click)="changePage(2)">Signals</li>
+            <li (click)="tab=1">Deferrable Views</li>
+            <li (click)="tab=2">Signals</li>
+            <li (click)="tab=3">Imagens</li>
+            <li (click)="tab=4">Animação</li>
+            <li (click)="tab=5">Testes</li>
+            <li (click)="tab=6">SSR</li>
+
         </ul>
     </div>
     <section class="content">
-        @switch (page) {
+        @switch (tab) {
             @case (1) {
                 <app-deferrable-views></app-deferrable-views>
             }
             @case (2) {
                 <app-signal></app-signal>
             }
+            @case (3){
+                <app-otimizacao-imagens></app-otimizacao-imagens>
+            }
+            @case(4) {
+                <app-animacao></app-animacao>
+            }
+            @case (5) {
+                <app-testes></app-testes>
+            }
+            @case (6) {
+                <app-ssr></app-ssr>
+            }
         }
     </section>
 </div>
+

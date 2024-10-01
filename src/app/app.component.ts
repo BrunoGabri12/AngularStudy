@@ -2,13 +2,12 @@ import { Component, OnInit, Signal, signal, WritableSignal } from '@angular/core
 import { RouterOutlet } from '@angular/router';
 import { DeferrableViewsComponent } from "./study-topics/deferrable-views/deferrable-views.component";
 import { SignalComponent } from "./study-topics/signal/signal.component";
-import { FormsComponent } from "./study-topics/signal/forms/forms.component";
 import { FirtsPageComponent } from "./firts-page/firts-page.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, DeferrableViewsComponent, SignalComponent, FormsComponent, FirtsPageComponent],
+  imports: [RouterOutlet, DeferrableViewsComponent, SignalComponent, FirtsPageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

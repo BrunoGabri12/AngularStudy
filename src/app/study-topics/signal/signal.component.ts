@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, input, Input, Output, Signal, signal, WritableSignal } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-signal',

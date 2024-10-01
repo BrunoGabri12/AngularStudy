@@ -8,6 +8,7 @@ import { provideHighlightOptions } from 'ngx-highlightjs';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideAnimationsAsync(),
-    provideHighlightOptions({fullLibraryLoader: () => import('highlight.js')})
+    provideHighlightOptions({fullLibraryLoader: () => import('highlight.js')}),
+    provideAnimationsAsync(),
   ]
 };
