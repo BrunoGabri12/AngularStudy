@@ -1,0 +1,28 @@
+<h3>Otimização de imagens</h3>
+<p>Para utilizarmos a otimização de imagens, importamos o NgOptimizeImage</p>
+<p>O src pode vir a gerar problemas de otimização da aplicação</p>
+<p>Utilizar o ngSrc auxilia no ranquemanto do SEO</p>
+<p>Podemos observar no código abaixo </p>
+
+<pre><code [highlight]="imgCode" language="typescript"></code></pre>
+
+
+<p>Quando colocamos a tag priority, o site irá o carregamento da imagem.
+Podemos adicionar também a tag loading="lazy" com o objetivo de carregar a imagem com lazy load</p>
+<img ngSrc="/angular.png" width="400" height="200" alt="Imagem ">
+
+
+<h3>Imagem Responsiva</h3>
+<p>Utilizando o fill, a imagem irá se ajustar na div </p>
+<div style="position:relative; width: 400 px; height: 250px;">
+    <img ngSrc="/angular.png" alt="Imagem" fill priority>
+</div>
+
+<p>Utilizando o cover, a imagem irá se ajustar na div, mas sem distorcer </p>
+<div style="position:relative; width: 400 px; height: 250px;">
+    <img ngSrc="/angular.png" alt="Imagem" fill priority style="object-fit: cover;">
+</div>
+
+
+<h4>ProvideImgixLoader</h4>
+<p> O provide de imagem irá permitir que seja possível carregar as imagens de acordo com o break point </p>
